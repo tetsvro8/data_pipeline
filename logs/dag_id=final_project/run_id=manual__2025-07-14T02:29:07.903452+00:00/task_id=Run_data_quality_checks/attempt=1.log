@@ -1,0 +1,21 @@
+[2025-07-14T02:29:50.966+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: final_project.Run_data_quality_checks manual__2025-07-14T02:29:07.903452+00:00 [queued]>
+[2025-07-14T02:29:50.979+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: final_project.Run_data_quality_checks manual__2025-07-14T02:29:07.903452+00:00 [queued]>
+[2025-07-14T02:29:50.979+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 1
+[2025-07-14T02:29:50.999+0000] {taskinstance.py:1350} INFO - Executing <Task(DataQualityOperator): Run_data_quality_checks> on 2025-07-14 02:29:07.903452+00:00
+[2025-07-14T02:29:51.006+0000] {standard_task_runner.py:57} INFO - Started process 676 to run task
+[2025-07-14T02:29:51.015+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'final_project', 'Run_data_quality_checks', 'manual__2025-07-14T02:29:07.903452+00:00', '--job-id', '41', '--raw', '--subdir', 'DAGS_FOLDER/final_project.py', '--cfg-path', '/tmp/tmpa2bq4c2g']
+[2025-07-14T02:29:51.017+0000] {standard_task_runner.py:85} INFO - Job 41: Subtask Run_data_quality_checks
+[2025-07-14T02:29:51.109+0000] {task_command.py:410} INFO - Running <TaskInstance: final_project.Run_data_quality_checks manual__2025-07-14T02:29:07.903452+00:00 [running]> on host d7ac0fd04b06
+[2025-07-14T02:29:51.230+0000] {taskinstance.py:1570} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='udacity' AIRFLOW_CTX_DAG_ID='final_project' AIRFLOW_CTX_TASK_ID='Run_data_quality_checks' AIRFLOW_CTX_EXECUTION_DATE='2025-07-14T02:29:07.903452+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-07-14T02:29:07.903452+00:00'
+[2025-07-14T02:29:51.250+0000] {base.py:73} INFO - Using connection ID 'redshift' for task execution.
+[2025-07-14T02:29:52.616+0000] {sql.py:375} INFO - Running statement: SELECT COUNT(*) FROM songplays, parameters: None
+[2025-07-14T02:29:53.130+0000] {sql.py:384} INFO - Rows affected: 1
+[2025-07-14T02:29:53.317+0000] {taskinstance.py:1847} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/opt/airflow/plugins/operators/data_quality.py", line 36, in execute
+    logging.info(f"Data quality on table {self.table} check passed with {records[0][0]} records")
+NameError: name 'logging' is not defined
+[2025-07-14T02:29:53.326+0000] {taskinstance.py:1373} INFO - Marking task as FAILED. dag_id=final_project, task_id=Run_data_quality_checks, execution_date=20250714T022907, start_date=20250714T022950, end_date=20250714T022953
+[2025-07-14T02:29:53.337+0000] {standard_task_runner.py:109} ERROR - Failed to execute job 41 for task Run_data_quality_checks (name 'logging' is not defined; 676)
+[2025-07-14T02:29:53.356+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 1
+[2025-07-14T02:29:53.381+0000] {taskinstance.py:2674} INFO - 0 downstream tasks scheduled from follow-on schedule check

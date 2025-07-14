@@ -1,0 +1,19 @@
+[2025-07-14T02:33:59.632+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: final_project.Load_time_dim_table manual__2025-07-14T02:33:25.563358+00:00 [queued]>
+[2025-07-14T02:33:59.645+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: final_project.Load_time_dim_table manual__2025-07-14T02:33:25.563358+00:00 [queued]>
+[2025-07-14T02:33:59.645+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 1
+[2025-07-14T02:33:59.680+0000] {taskinstance.py:1350} INFO - Executing <Task(LoadDimensionOperator): Load_time_dim_table> on 2025-07-14 02:33:25.563358+00:00
+[2025-07-14T02:33:59.689+0000] {standard_task_runner.py:57} INFO - Started process 769 to run task
+[2025-07-14T02:33:59.696+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'final_project', 'Load_time_dim_table', 'manual__2025-07-14T02:33:25.563358+00:00', '--job-id', '49', '--raw', '--subdir', 'DAGS_FOLDER/final_project.py', '--cfg-path', '/tmp/tmpn_ll_k2e']
+[2025-07-14T02:33:59.699+0000] {standard_task_runner.py:85} INFO - Job 49: Subtask Load_time_dim_table
+[2025-07-14T02:33:59.798+0000] {task_command.py:410} INFO - Running <TaskInstance: final_project.Load_time_dim_table manual__2025-07-14T02:33:25.563358+00:00 [running]> on host d7ac0fd04b06
+[2025-07-14T02:33:59.943+0000] {taskinstance.py:1570} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='udacity' AIRFLOW_CTX_DAG_ID='final_project' AIRFLOW_CTX_TASK_ID='Load_time_dim_table' AIRFLOW_CTX_EXECUTION_DATE='2025-07-14T02:33:25.563358+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-07-14T02:33:25.563358+00:00'
+[2025-07-14T02:33:59.961+0000] {base.py:73} INFO - Using connection ID 'redshift' for task execution.
+[2025-07-14T02:34:01.207+0000] {sql.py:375} INFO - Running statement: INSERT INTO time 
+        SELECT start_time, extract(hour from start_time), extract(day from start_time), extract(week from start_time), 
+               extract(month from start_time), extract(year from start_time), extract(dayofweek from start_time)
+        FROM songplays
+    ;, parameters: None
+[2025-07-14T02:34:01.652+0000] {sql.py:384} INFO - Rows affected: 6820
+[2025-07-14T02:34:02.843+0000] {taskinstance.py:1373} INFO - Marking task as SUCCESS. dag_id=final_project, task_id=Load_time_dim_table, execution_date=20250714T023325, start_date=20250714T023359, end_date=20250714T023402
+[2025-07-14T02:34:02.911+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 0
+[2025-07-14T02:34:02.961+0000] {taskinstance.py:2674} INFO - 0 downstream tasks scheduled from follow-on schedule check

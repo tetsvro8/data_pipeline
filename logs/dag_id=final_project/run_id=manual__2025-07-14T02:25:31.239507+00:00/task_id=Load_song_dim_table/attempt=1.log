@@ -1,0 +1,31 @@
+[2025-07-14T02:26:19.105+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: final_project.Load_song_dim_table manual__2025-07-14T02:25:31.239507+00:00 [queued]>
+[2025-07-14T02:26:19.125+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: final_project.Load_song_dim_table manual__2025-07-14T02:25:31.239507+00:00 [queued]>
+[2025-07-14T02:26:19.126+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 1
+[2025-07-14T02:26:19.149+0000] {taskinstance.py:1350} INFO - Executing <Task(LoadDimensionOperator): Load_song_dim_table> on 2025-07-14 02:25:31.239507+00:00
+[2025-07-14T02:26:19.158+0000] {standard_task_runner.py:57} INFO - Started process 585 to run task
+[2025-07-14T02:26:19.163+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'final_project', 'Load_song_dim_table', 'manual__2025-07-14T02:25:31.239507+00:00', '--job-id', '31', '--raw', '--subdir', 'DAGS_FOLDER/final_project.py', '--cfg-path', '/tmp/tmp1rzkd5iu']
+[2025-07-14T02:26:19.167+0000] {standard_task_runner.py:85} INFO - Job 31: Subtask Load_song_dim_table
+[2025-07-14T02:26:19.248+0000] {task_command.py:410} INFO - Running <TaskInstance: final_project.Load_song_dim_table manual__2025-07-14T02:25:31.239507+00:00 [running]> on host d7ac0fd04b06
+[2025-07-14T02:26:19.359+0000] {taskinstance.py:1570} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='udacity' AIRFLOW_CTX_DAG_ID='final_project' AIRFLOW_CTX_TASK_ID='Load_song_dim_table' AIRFLOW_CTX_EXECUTION_DATE='2025-07-14T02:25:31.239507+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-07-14T02:25:31.239507+00:00'
+[2025-07-14T02:26:19.377+0000] {base.py:73} INFO - Using connection ID 'redshift' for task execution.
+[2025-07-14T02:26:20.752+0000] {sql.py:375} INFO - Running statement: INSERT INTO song_table 
+        SELECT distinct song_id, title, artist_id, year, duration
+        FROM staging_songs
+    ;, parameters: None
+[2025-07-14T02:26:21.136+0000] {load_dimension.py:35} ERROR - 'song_table' へのデータのロード中にエラーが発生しました: relation "song_table" does not exist
+
+[2025-07-14T02:26:21.138+0000] {taskinstance.py:1847} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/opt/airflow/plugins/operators/load_dimension.py", line 33, in execute
+    redshift.run(exec_sql)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/common/sql/hooks/sql.py", line 349, in run
+    self._run_command(cur, sql_statement, parameters)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/common/sql/hooks/sql.py", line 380, in _run_command
+    cur.execute(sql_statement)
+psycopg2.errors.UndefinedTable: relation "song_table" does not exist
+
+[2025-07-14T02:26:21.164+0000] {taskinstance.py:1373} INFO - Marking task as FAILED. dag_id=final_project, task_id=Load_song_dim_table, execution_date=20250714T022531, start_date=20250714T022619, end_date=20250714T022621
+[2025-07-14T02:26:21.181+0000] {standard_task_runner.py:109} ERROR - Failed to execute job 31 for task Load_song_dim_table (relation "song_table" does not exist
+; 585)
+[2025-07-14T02:26:21.220+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 1
+[2025-07-14T02:26:21.258+0000] {taskinstance.py:2674} INFO - 0 downstream tasks scheduled from follow-on schedule check

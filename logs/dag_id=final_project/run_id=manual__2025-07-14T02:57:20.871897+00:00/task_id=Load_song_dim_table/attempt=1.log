@@ -1,0 +1,18 @@
+[2025-07-14T02:57:54.036+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: final_project.Load_song_dim_table manual__2025-07-14T02:57:20.871897+00:00 [queued]>
+[2025-07-14T02:57:54.051+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: final_project.Load_song_dim_table manual__2025-07-14T02:57:20.871897+00:00 [queued]>
+[2025-07-14T02:57:54.052+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 1
+[2025-07-14T02:57:54.075+0000] {taskinstance.py:1350} INFO - Executing <Task(LoadDimensionOperator): Load_song_dim_table> on 2025-07-14 02:57:20.871897+00:00
+[2025-07-14T02:57:54.082+0000] {standard_task_runner.py:57} INFO - Started process 1243 to run task
+[2025-07-14T02:57:54.090+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'final_project', 'Load_song_dim_table', 'manual__2025-07-14T02:57:20.871897+00:00', '--job-id', '72', '--raw', '--subdir', 'DAGS_FOLDER/final_project.py', '--cfg-path', '/tmp/tmpmsc4_i8x']
+[2025-07-14T02:57:54.095+0000] {standard_task_runner.py:85} INFO - Job 72: Subtask Load_song_dim_table
+[2025-07-14T02:57:54.189+0000] {task_command.py:410} INFO - Running <TaskInstance: final_project.Load_song_dim_table manual__2025-07-14T02:57:20.871897+00:00 [running]> on host d7ac0fd04b06
+[2025-07-14T02:57:54.375+0000] {taskinstance.py:1570} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='udacity' AIRFLOW_CTX_DAG_ID='final_project' AIRFLOW_CTX_TASK_ID='Load_song_dim_table' AIRFLOW_CTX_EXECUTION_DATE='2025-07-14T02:57:20.871897+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-07-14T02:57:20.871897+00:00'
+[2025-07-14T02:57:54.400+0000] {base.py:73} INFO - Using connection ID 'redshift' for task execution.
+[2025-07-14T02:57:55.731+0000] {sql.py:375} INFO - Running statement: INSERT INTO songs 
+        SELECT distinct song_id, title, artist_id, year, duration
+        FROM staging_songs
+    ;, parameters: None
+[2025-07-14T02:57:56.204+0000] {sql.py:384} INFO - Rows affected: 24
+[2025-07-14T02:57:57.305+0000] {taskinstance.py:1373} INFO - Marking task as SUCCESS. dag_id=final_project, task_id=Load_song_dim_table, execution_date=20250714T025720, start_date=20250714T025754, end_date=20250714T025757
+[2025-07-14T02:57:57.349+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 0
+[2025-07-14T02:57:57.384+0000] {taskinstance.py:2674} INFO - 1 downstream tasks scheduled from follow-on schedule check

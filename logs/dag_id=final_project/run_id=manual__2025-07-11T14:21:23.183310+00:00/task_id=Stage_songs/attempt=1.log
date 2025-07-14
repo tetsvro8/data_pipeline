@@ -1,0 +1,33 @@
+[2025-07-11T14:21:25.947+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: final_project.Stage_songs manual__2025-07-11T14:21:23.183310+00:00 [queued]>
+[2025-07-11T14:21:25.954+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: final_project.Stage_songs manual__2025-07-11T14:21:23.183310+00:00 [queued]>
+[2025-07-11T14:21:25.955+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 1
+[2025-07-11T14:21:25.973+0000] {taskinstance.py:1350} INFO - Executing <Task(StageToRedshiftOperator): Stage_songs> on 2025-07-11 14:21:23.183310+00:00
+[2025-07-11T14:21:25.979+0000] {standard_task_runner.py:57} INFO - Started process 306 to run task
+[2025-07-11T14:21:25.983+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'final_project', 'Stage_songs', 'manual__2025-07-11T14:21:23.183310+00:00', '--job-id', '11', '--raw', '--subdir', 'DAGS_FOLDER/final_project.py', '--cfg-path', '/tmp/tmpljly9wu0']
+[2025-07-11T14:21:25.992+0000] {standard_task_runner.py:85} INFO - Job 11: Subtask Stage_songs
+[2025-07-11T14:21:26.077+0000] {task_command.py:410} INFO - Running <TaskInstance: final_project.Stage_songs manual__2025-07-11T14:21:23.183310+00:00 [running]> on host 49f24e24a176
+[2025-07-11T14:21:26.193+0000] {taskinstance.py:1570} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='udacity' AIRFLOW_CTX_DAG_ID='final_project' AIRFLOW_CTX_TASK_ID='Stage_songs' AIRFLOW_CTX_EXECUTION_DATE='2025-07-11T14:21:23.183310+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-07-11T14:21:23.183310+00:00'
+[2025-07-11T14:21:26.213+0000] {base.py:73} INFO - Using connection ID 'aws_credentials' for task execution.
+[2025-07-11T14:21:26.215+0000] {connection_wrapper.py:337} INFO - AWS Connection (conn_id='aws_credentials', conn_type='aws') credentials retrieved from login and password.
+[2025-07-11T14:21:26.226+0000] {stage_redshift.py:53} INFO - Clearing data from destination Redshift table
+[2025-07-11T14:21:26.239+0000] {base.py:73} INFO - Using connection ID 'redshift' for task execution.
+[2025-07-11T14:21:28.423+0000] {sql.py:375} INFO - Running statement: DELETE FROM , parameters: None
+[2025-07-11T14:21:40.877+0000] {taskinstance.py:1847} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/opt/airflow/plugins/operators/stage_redshift.py", line 54, in execute
+    redshift.run("DELETE FROM {}".format(self.table))
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/common/sql/hooks/sql.py", line 349, in run
+    self._run_command(cur, sql_statement, parameters)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/common/sql/hooks/sql.py", line 380, in _run_command
+    cur.execute(sql_statement)
+psycopg2.errors.SyntaxError: syntax error at end of input
+LINE 1: DELETE FROM 
+                    ^
+
+[2025-07-11T14:21:40.901+0000] {taskinstance.py:1373} INFO - Marking task as FAILED. dag_id=final_project, task_id=Stage_songs, execution_date=20250711T142123, start_date=20250711T142125, end_date=20250711T142140
+[2025-07-11T14:21:40.919+0000] {standard_task_runner.py:109} ERROR - Failed to execute job 11 for task Stage_songs (syntax error at end of input
+LINE 1: DELETE FROM 
+                    ^
+; 306)
+[2025-07-11T14:21:40.933+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 1
+[2025-07-11T14:21:40.993+0000] {taskinstance.py:2674} INFO - 0 downstream tasks scheduled from follow-on schedule check

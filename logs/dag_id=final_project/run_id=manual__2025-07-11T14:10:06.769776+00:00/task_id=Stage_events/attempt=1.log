@@ -1,0 +1,21 @@
+[2025-07-11T14:10:11.641+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: final_project.Stage_events manual__2025-07-11T14:10:06.769776+00:00 [queued]>
+[2025-07-11T14:10:11.651+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: final_project.Stage_events manual__2025-07-11T14:10:06.769776+00:00 [queued]>
+[2025-07-11T14:10:11.652+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 1
+[2025-07-11T14:10:11.669+0000] {taskinstance.py:1350} INFO - Executing <Task(StageToRedshiftOperator): Stage_events> on 2025-07-11 14:10:06.769776+00:00
+[2025-07-11T14:10:11.674+0000] {standard_task_runner.py:57} INFO - Started process 105 to run task
+[2025-07-11T14:10:11.678+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'final_project', 'Stage_events', 'manual__2025-07-11T14:10:06.769776+00:00', '--job-id', '7', '--raw', '--subdir', 'DAGS_FOLDER/final_project.py', '--cfg-path', '/tmp/tmpo420pitm']
+[2025-07-11T14:10:11.681+0000] {standard_task_runner.py:85} INFO - Job 7: Subtask Stage_events
+[2025-07-11T14:10:11.819+0000] {task_command.py:410} INFO - Running <TaskInstance: final_project.Stage_events manual__2025-07-11T14:10:06.769776+00:00 [running]> on host 49f24e24a176
+[2025-07-11T14:10:11.929+0000] {taskinstance.py:1570} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='udacity' AIRFLOW_CTX_DAG_ID='final_project' AIRFLOW_CTX_TASK_ID='Stage_events' AIRFLOW_CTX_EXECUTION_DATE='2025-07-11T14:10:06.769776+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-07-11T14:10:06.769776+00:00'
+[2025-07-11T14:10:11.931+0000] {base_aws.py:160} INFO - No connection ID provided. Fallback on boto3 credential strategy (region_name=None). See: https://boto3.amazonaws.com/v1/documentation/api/latest/guide/configuration.html
+[2025-07-11T14:10:13.957+0000] {taskinstance.py:1847} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/opt/airflow/plugins/operators/stage_redshift.py", line 50, in execute
+    credentials = aws_hook.get_credentials()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/amazon/aws/hooks/base_aws.py", line 701, in get_credentials
+    creds = self.get_session(region_name=region_name).get_credentials().get_frozen_credentials()
+AttributeError: 'NoneType' object has no attribute 'get_frozen_credentials'
+[2025-07-11T14:10:13.968+0000] {taskinstance.py:1373} INFO - Marking task as FAILED. dag_id=final_project, task_id=Stage_events, execution_date=20250711T141006, start_date=20250711T141011, end_date=20250711T141013
+[2025-07-11T14:10:13.992+0000] {standard_task_runner.py:109} ERROR - Failed to execute job 7 for task Stage_events ('NoneType' object has no attribute 'get_frozen_credentials'; 105)
+[2025-07-11T14:10:14.027+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 1
+[2025-07-11T14:10:14.059+0000] {taskinstance.py:2674} INFO - 0 downstream tasks scheduled from follow-on schedule check
